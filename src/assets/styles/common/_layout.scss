@@ -14,7 +14,11 @@
     --s-container-padding: 2rem;
 
     // fonts
-    --f-primary: system-ui, avenir, helvetica, arial, sans-serif;
+
+    // --f-primary: system-ui, avenir, helvetica, arial, sans-serif;
+
+    --f-primary: "DM Sans", system-ui, sans-serif;
+    --f-heading: "Wix Madefor Display", system-ui, sans-serif;
 }
 
 body {
