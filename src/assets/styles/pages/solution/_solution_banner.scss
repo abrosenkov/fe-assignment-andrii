@@ -10,8 +10,10 @@
         position: absolute;
         inset: 0;
         background-color: var(--c-bg);
+        background-image: url(/public/main_banner/main-banner.webp);
         background-position: center;
         background-size: cover;
+        background-repeat: no-repeat;
         border-radius: 0.8rem;
     }
 
@@ -93,6 +95,14 @@
                 width: 2rem;
                 height: 2rem;
             }
+        }
+    }
+}
+
+@media screen and (min-resolution: 2x) {
+    .c-solution-banner {
+        &__image {
+            background-image: url(/public/main_banner/main-banner@2x.webp);
         }
     }
 }
