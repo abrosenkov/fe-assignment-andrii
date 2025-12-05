@@ -2,7 +2,10 @@
 
 .c-solution-banner {
     position: relative;
+    width: 100vw;
     height: 56.9rem;
+    margin-right: calc(50% - 50vw);
+    margin-left: calc(50% - 50vw);
     overflow: hidden;
     border-radius: 0.8rem;
 
@@ -10,10 +13,10 @@
         position: absolute;
         inset: 0;
         background-color: var(--c-bg);
-        background-image: url(/public/main_banner/main-banner.webp);
+        background-image: url("/main_banner/main-banner.webp");
+        background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-        background-repeat: no-repeat;
         border-radius: 0.8rem;
     }
 
@@ -21,8 +24,8 @@
         position: absolute;
         inset: 0;
         background: linear-gradient(
-            90deg,
-            rgb(0 0 0 / 60%) 0%,
+            57deg,
+            rgb(0 0 0 / 64%) 0%,
             rgb(0 0 0 / 20%) 50%,
             transparent 100%
         );
@@ -99,10 +102,18 @@
     }
 }
 
-@media screen and (min-resolution: 2x) {
+@media screen and (resolution >= 2x) {
     .c-solution-banner {
         &__image {
-            background-image: url(/public/main_banner/main-banner@2x.webp);
+            background-image: url("/main_banner/main-banner@2x.webp");
         }
     }
 }
+
+// @media screen and (max-width: 375px) {
+//     .c-solution-banner {
+//         &__image {
+//             width: 100%;
+//         }
+//     }
+// }

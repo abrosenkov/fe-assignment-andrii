@@ -23,11 +23,17 @@ const solutionBanner = (banner) => html`
         <div class="c-solution-banner__image"></div>
         <div class="c-solution-banner__overlay"></div>
         <div class="c-solution-banner__content">
-            <h1 class="c-solution-banner__content__title">${banner.title}</h1>
-            <div class="c-solution-banner__content__description">${banner.description}</div>
-            <button class="c-solution-banner__content__button" @click=${() => handleBannerClick()}>
-                <span class="sb-text">${banner.ctaText}</span>
+            <h1 class="c-solution-banner__content__title">${banner?.title ?? ""}</h1>
+            <div class="c-solution-banner__content__description">${banner?.description ?? ""}</div>
+            <button
+                aria-label="Zobraziť celú ponuku"
+                class="c-solution-banner__content__button"
+                @click=${() => handleBannerClick()}
+            >
+                <span class="sb-text">${banner?.ctaText ?? ""}</span>
+
                 <svg
+                    aria-hidden="true"
                     class="sb-icon"
                     width="20"
                     height="20"
