@@ -5,6 +5,7 @@
     width: 64rem;
     min-height: 54rem;
     overflow: hidden;
+    height: 100%;
     border-radius: 0.8rem;
 
     &__image {
@@ -68,7 +69,8 @@
             border-radius: 0.4rem;
             transition: background 0.2s ease;
 
-            &:hover {
+            &:hover,
+            &:focus {
                 background: #c01559;
             }
 

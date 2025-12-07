@@ -1,0 +1,30 @@
+.c-toast {
+    position: fixed;
+    right: 2.4rem;
+    bottom: 2.4rem;
+    padding: 1.4rem 2.4rem;
+    border-radius: 0.6rem;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(1rem);
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+    z-index: 999;
+    pointer-events: none;
+
+    &.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    &.is-success {
+        background: #149721;
+    }
+
+    &.is-error {
+        background: #dd1969;
+    }
+}

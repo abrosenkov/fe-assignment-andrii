@@ -15,8 +15,6 @@
 
     // fonts
 
-    // --f-primary: system-ui, avenir, helvetica, arial, sans-serif;
-
     --f-primary: "DM Sans", system-ui, sans-serif;
     --f-heading: "Wix Madefor Display", system-ui, sans-serif;
 }
@@ -44,5 +42,16 @@ body {
 
     &.is-shorter {
         max-width: 132rem;
+    }
+}
+
+.l-container-wide {
+    width: 100%;
+    max-width: 160rem;
+    margin: 0 auto;
+
+    &.is-shorter {
+        max-width: 136rem;
+        padding: 0 var(--s-container-padding);
     }
 }
