@@ -1,0 +1,258 @@
+@use "./../../init" as *;
+
+.c-product-card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+    width: 31.6rem;
+    min-height: 54rem;
+    overflow: hidden;
+    border: 0.1rem solid #f1f0f6;
+    border-radius: 0.4rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12);
+    background: #fff;
+    padding: 3rem 2.4rem;
+    &:hover .c-product-card__actions__button {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    &__badges {
+        position: absolute;
+        display: flex;
+        gap: 0.4rem;
+        top: 1.2rem;
+        left: 1.2rem;
+
+        &__badge {
+            font-weight: 600;
+            font-size: 1.3rem;
+            text-align: center;
+            color: var(--c-white);
+            border-radius: 0.4rem;
+            padding: 0.4rem 0.8rem;
+        }
+
+        &__discount {
+            background-color: #7d2f78;
+        }
+
+        &__new {
+            background-color: #149721;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        gap: 0.6rem;
+        position: absolute;
+        top: 1.2rem;
+        right: 1.2rem;
+
+        &__button {
+            opacity: 0;
+            pointer-events: none;
+            width: 3.2rem;
+            height: 3.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.4rem;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.25s ease-in-out;
+            &:hover {
+                opacity: 0.8;
+            }
+            &:active {
+                opacity: 0.6;
+            }
+        }
+
+        &__button-icon {
+            width: 1.6rem;
+            height: 1.6rem;
+            stroke: #070216;
+            fill: #070216;
+        }
+    }
+
+    &__image {
+        display: block;
+        width: 100%;
+        margin-bottom: 3rem;
+    }
+
+    &__content {
+        margin-bottom: 3.2rem;
+        flex: 1;
+        overflow: hidden;
+
+        &__rating {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .c-rating-stars {
+            display: flex;
+            gap: 0.4rem;
+            color: #f1f0f6;
+        }
+
+        .c-rating-star {
+            color: #f1f0f6;
+
+            &.is-active {
+                color: #f5d40e;
+            }
+        }
+
+        .c-product-card__reviews {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #070216;
+        }
+
+        &__title {
+            font-family: var(--f-heading);
+            font-weight: 800;
+            font-size: 1.6rem;
+            line-height: 1.25;
+            color: #070216;
+            margin-bottom: 0.6rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        &__model {
+            font-weight: 400;
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 1.6rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        &__prices {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.6rem;
+        }
+
+        .c-product-card__old-price {
+            font-weight: 400;
+            font-size: 1.3rem;
+            text-decoration: line-through;
+            color: #070216;
+        }
+
+        .c-product-card__price {
+            font-family: var(--f-heading);
+            font-weight: 800;
+            font-size: 2rem;
+            text-transform: uppercase;
+            color: #dd1969;
+        }
+
+        .c-product-card__vat {
+            font-weight: 400;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .c-product-card__stock {
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: underline;
+            text-decoration-skip-ink: none;
+            color: #149721;
+        }
+    }
+
+    &__controls {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        flex-shrink: 0;
+
+        &__quantity {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        &__quantity-btn-icon {
+            width: 1.2rem;
+            height: 1.2rem;
+            fill: #070216;
+        }
+
+        &__quantity-btn {
+            background-color: transparent;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.25s ease-in-out;
+            &:hover,
+            &:focus {
+                opacity: 0.8;
+            }
+        }
+
+        &__quantity-input {
+            display: flex;
+            width: 4.6rem;
+            height: 4.4rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-align: center;
+            color: #070216;
+            border: 1px solid #f1f0f6;
+            border-radius: 0.4rem;
+            outline: none;
+            &:focus-within {
+                border-color: #dd1969;
+            }
+        }
+
+        &__add-btn {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0 2.4rem;
+            height: 4.5rem;
+            min-width: 15.6rem;
+            border-radius: 0.4rem;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: var(--c-white);
+            background-color: #dd1969;
+            transition: background-color 0.25s ease-in-out;
+            &:hover,
+            &:focus {
+                background-color: #c01559;
+            }
+            &:active {
+                background-color: #a01249;
+            }
+        }
+
+        &__add-btn-icon {
+            width: 2.2rem;
+            height: 2.1rem;
+        }
+    }
+}

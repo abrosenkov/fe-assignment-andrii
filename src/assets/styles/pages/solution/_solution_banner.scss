@@ -2,10 +2,8 @@
 
 .c-solution-banner {
     position: relative;
-    width: 100vw;
-    height: 56.9rem;
-    margin-right: calc(50% - 50vw);
-    margin-left: calc(50% - 50vw);
+    width: 100%;
+    min-height: 56.9rem;
     overflow: hidden;
     border-radius: 0.8rem;
 
@@ -49,11 +47,11 @@
             font-family: var(--f-heading);
             font-size: 5.2rem;
             font-weight: 800;
-            line-height: 1.25;
+            line-height: 1.1;
         }
 
         &__description {
-            width: 52rem;
+            width: 50rem;
             margin: 0;
             font-family: var(--f-primary);
             font-size: 1.6rem;
@@ -78,7 +76,8 @@
             border-radius: 0.4rem;
             transition: background 0.2s ease;
 
-            &:hover {
+            &:hover,
+            &:focus {
                 background: #c01559;
             }
 

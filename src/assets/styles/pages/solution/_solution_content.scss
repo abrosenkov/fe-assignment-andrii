@@ -5,19 +5,18 @@
 .c-solution-content {
     display: flex;
     gap: 2.4rem;
-    align-items: flex-start;
-
-    &__wrapper {
-        max-width: 132rem;
-        margin: 0 auto;
-        padding: 0;
-    }
+    justify-content: space-between;
 
     &__cta {
-        flex: 0 0 64rem;
+        width: 64rem;
+        height: auto;
     }
 
     &__products {
-        flex: 0 0 65.6rem;
+        width: 65.6rem;
+        gap: 2.4rem;
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
     }
 }
