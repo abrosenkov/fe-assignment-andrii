@@ -1,6 +1,7 @@
 @use "./../../init" as *;
 
 .c-product-card {
+    flex-shrink: 0;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -210,6 +211,7 @@
         }
 
         &__quantity-input {
+            padding: 0.8rem;
             display: flex;
             width: 4.6rem;
             height: 4.4rem;

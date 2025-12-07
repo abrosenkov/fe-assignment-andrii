@@ -1,5 +1,10 @@
 import { html } from "lit-html";
 import { loadData } from "../dataLoader.js";
+import { renderStars } from "../ui/render-stars.js";
+import { showToast } from "../ui/toast.js";
+import { initProductSlider } from "../ui/sliderController.js";
+
+const MAX_QTY = 10;
 
 /**
  * Solution Page
@@ -17,37 +22,62 @@ const handleBannerClick = () => {
     // TODO: Navigate to products or filter
 };
 
-const changeQty = () => {};
+// Compare button click handler
+const handleCompare = (product) => {
+    console.log("🔍 COMPARE clicked:", {
+        id: product.id,
+        name: product.name,
+        sku: product.sku,
+    });
+    // TODO: Implement compare logic
+};
 
-const handleAddToCart = () => {};
+// Favorite button click handler
+const handleFavorite = (product) => {
+    console.log("FAVORITE clicked:", {
+        id: product.id,
+        name: product.name,
+    });
+    // TODO: Implement favorite logic
+};
 
-const renderStars = (rating) => {
-    const max = 5;
+// Quantity change button click handler
+export const changeQty = (productId, delta) => {
+    const input = document.querySelector(`#qty-${productId}`);
 
-    return html`
-        <div class="c-rating-stars" aria-label="Hodnotenie ${rating} z 5" role="img">
-            ${Array.from({ length: max }).map((_, i) => {
-                const isActive = i < rating;
+    if (!input) return;
+    let value = parseInt(input.value, 10);
+    const newValue = value + delta;
 
-                return html`
-                    <svg
-                        class="c-rating-star ${isActive ? "is-active" : ""}"
-                        width="13"
-                        height="13"
-                        viewBox="0 0 13 13"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true"
-                    >
-                        <path
-                            d="M6.50052 10.4607L2.47747 13L3.54012 8.19325L0 4.94325L4.66558 4.537L6.50052 0L8.33442 4.537L13 4.94325L9.45988 8.19325L10.5225 13L6.50052 10.4607Z"
-                            fill="currentColor"
-                        />
-                    </svg>
-                `;
-            })}
-        </div>
-    `;
+    if (newValue < 1) {
+        return;
+    }
+
+    if (newValue > MAX_QTY) {
+        return;
+    }
+    input.value = newValue;
+};
+
+// Add to cart button click handler
+export const handleAddToCart = (product) => {
+    const input = document.querySelector(`#qty-${product.id}`);
+    const qty = Number(input?.value);
+
+    if (qty > MAX_QTY) {
+        showToast(`Nie je možné pridať viac ako ${MAX_QTY} ks`, "error");
+        input.value = MAX_QTY;
+        return;
+    }
+
+    if (qty < 1) {
+        showToast(`Nie je možné pridať menej ako 1 ks`, "error");
+        input.value = 1;
+        return;
+    }
+
+    console.log(`Pridané do košíka: ${product.name} | Množstvo: ${qty}`);
+    showToast(`${product.name} (${qty} ks) pridané do košíka`, "success");
 };
 
 // Solution main banner
@@ -134,23 +164,24 @@ const solutionCta = (ctaBanner) => html`
 const productCard = (product, index) => html`
     <article class="c-product-card">
         ${product.badges?.length
-            ? html`
-                  <div class="c-product-card__badges">
-                      ${product.badges.map(
-                          (badge) => html`
-                              <span
-                                  class="c-product-card__badges__badge c-product-card__badges__${badge.type}"
-                              >
-                                  ${badge.label}
-                              </span>
-                          `
-                      )}
-                  </div>
-              `
+            ? html`<div class="c-product-card__badges">
+                  ${product.badges.map(
+                      (badge) =>
+                          html` <span
+                              class="c-product-card__badges__badge c-product-card__badges__${badge.type}"
+                          >
+                              ${badge.label}</span
+                          >`
+                  )}
+              </div> `
             : ""}
 
         <div class="c-product-card__actions">
-            <button class="c-product-card__actions__button" aria-label="Porovnat">
+            <button
+                class="c-product-card__actions__button"
+                aria-label="Porovnat"
+                @click=${() => handleCompare(product)}
+            >
                 <svg
                     class="c-product-card__actions__button-icon"
                     version="1.1"
@@ -166,7 +197,11 @@ const productCard = (product, index) => html`
                     ></path>
                 </svg>
             </button>
-            <button class="c-product-card__actions__button" aria-label="Přidat do oblíbených">
+            <button
+                class="c-product-card__actions__button"
+                aria-label="Přidat do oblíbených"
+                @click=${() => handleFavorite(product)}
+            >
                 <svg
                     class="c-product-card__actions__button-icon"
                     version="1.1"
@@ -249,10 +284,11 @@ const productCard = (product, index) => html`
                 </button>
 
                 <input
-                    type="text"
+                    type="number"
                     value="1"
                     min="1"
                     max="10"
+                    id="qty-${product.id}"
                     inputmode="numeric"
                     class="c-product-card__controls__quantity-input"
                     aria-label="Množstvo"
@@ -323,6 +359,8 @@ export const renderSolutionPage = (data) => {
     console.log("data.products:\n", data.products);
     console.log("data.categories:\n", data.categories);
 
+    const productsFour = [...data.products, ...data.products];
+
     return html`
         <div class="l-solution">
             <div class="l-solution__banner">
@@ -339,17 +377,35 @@ export const renderSolutionPage = (data) => {
                         </div>
 
                         <div class="c-solution-content__products">
-                            ${data.products
-                                ? data.products.map((product, index) => productCard(product, index))
-                                : html``}
+                            <div class="c-products-slider">
+                                <button
+                                    class="c-slider-btn c-slider-btn--prev"
+                                    aria-label="Previous"
+                                ></button>
+
+                                <div class="c-products-slider__viewport">
+                                    <div class="c-products-slider__track">
+                                        ${productsFour.map((product, index) =>
+                                            productCard(product, index)
+                                        )}
+                                    </div>
+                                </div>
+
+                                <button
+                                    class="c-slider-btn c-slider-btn--next"
+                                    aria-label="Next"
+                                ></button>
+                            </div>
+
+                            <button class="c-products-load-more">Zobraziť všetko</button>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="l-solution__categories">
-                <div class="l-container">
-                    <div class="c-solution-categories"></div>
+                <div class="l-solution__categories">
+                    <div class="l-container">
+                        <div class="c-solution-categories"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -362,7 +418,12 @@ export const renderSolutionPage = (data) => {
 export const loadAndRenderSolutionPage = async () => {
     try {
         const data = await loadData();
-        return renderSolutionPage(data);
+        const tpl = renderSolutionPage(data);
+        requestAnimationFrame(() => {
+            initProductSlider();
+        });
+
+        return tpl;
     } catch (error) {
         return html`<div class="l-solution">Error loading data: ${error.message}</div>`;
     }
