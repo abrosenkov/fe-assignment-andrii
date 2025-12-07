@@ -8,7 +8,6 @@ export function initProductSlider() {
 
     if (!track || !cards.length || !slider) return;
 
-    // 🔒 защита от повторной инициализации (важно для lit-html)
     if (slider.dataset.init === "true") return;
     slider.dataset.init = "true";
 
@@ -24,17 +23,15 @@ export function initProductSlider() {
         const mobile = isMobile();
         const total = cards.length;
 
-        // ✅ сколько видно
         if (!mobile) {
-            visible = 2; // desktop + tablet
+            visible = 2;
         } else {
-            visible = total; // mobile — колонка
+            visible = total;
         }
 
         index = 0;
         step = cards[0].offsetWidth + 24;
 
-        // ✅ кнопки ТОЛЬКО если карточек > 2 и НЕ mobile
         const needSlider = !mobile && total > 2;
 
         if (!needSlider) {
@@ -71,7 +68,6 @@ export function initProductSlider() {
         }
     });
 
-    // ✅ mobile: 2 карточки + load more
     function mobileLogic(mobile) {
         if (mobile) {
             cards.forEach((card, i) => {
