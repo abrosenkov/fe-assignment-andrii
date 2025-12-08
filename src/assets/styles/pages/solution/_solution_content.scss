@@ -14,10 +14,10 @@
     }
 
     &__products {
-        width: 65.6rem;
-        gap: 2.4rem;
         display: flex;
         flex-direction: row;
+        gap: 2.4rem;
         align-items: stretch;
+        width: 65.6rem;
     }
 }
