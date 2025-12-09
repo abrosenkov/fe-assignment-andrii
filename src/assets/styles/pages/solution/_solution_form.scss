@@ -1,0 +1,205 @@
+@use "./../../init" as *;
+
+.c-solution-form {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(46, 47, 66, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999999;
+    isolation: isolate;
+
+    &.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    &__modal {
+        width: 58.8rem;
+        min-height: 51rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 4rem;
+        background-color: var(--c-white);
+    }
+
+    &__close-btn {
+        width: 2.6rem;
+        height: 2.6rem;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        right: 1.6rem;
+        top: 1.6rem;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        opacity: 1;
+        transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    &__close-icon {
+        width: 1.6rem;
+        height: 1.6rem;
+        fill: #070216;
+    }
+
+    &__title-content {
+        display: flex;
+        flex-direction: row;
+        align-items: end;
+        justify-content: space-between;
+        margin-bottom: 3rem;
+    }
+
+    &__title {
+        max-width: 29.2rem;
+        font-weight: 800;
+        font-size: 2.4rem;
+        line-height: 1.4;
+        color: #070216;
+    }
+
+    &__required-fields {
+        font-family: var(--f-primary);
+        font-weight: 500;
+        font-size: 1.4rem;
+        line-height: 1.5;
+        color: #dd1969;
+        flex-shrink: 1;
+    }
+
+    &__input-wrapper,
+    &__input-wrapper--name-tel {
+        margin-bottom: 2.4rem;
+        display: flex;
+        gap: 1.6rem;
+        flex-direction: row;
+    }
+
+    &__input-wrapper,
+    &__input-wrapper-name,
+    &__input-wrapper-tel {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    &__form-label {
+        font-weight: 700;
+        font-size: 1.5rem;
+        line-height: 1.5;
+        color: #070216;
+        font-family: var(--f-primary);
+        & span {
+            color: #dd1969;
+        }
+    }
+
+    &__form-input--select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("/form/arrow.svg");
+        background-repeat: no-repeat;
+        background-position: right 1.4rem center;
+        background-size: 1.2rem;
+        cursor: pointer;
+        padding-right: 4rem;
+    }
+
+    &__form-input,
+    &__form-input--select {
+        font-family: var(--f-primary);
+        height: 4.8rem;
+        width: 100%;
+        border: 1px solid #cacaca;
+        border-radius: 0.4rem;
+        padding: 1rem 2rem;
+        font-weight: 500;
+        font-size: 1.4rem;
+        color: #555;
+        outline: none;
+
+        &:focus-within {
+            border-color: #dd1969;
+        }
+    }
+
+    &__button-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        gap: 1.6rem;
+    }
+
+    &__submit-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        max-width: 23.8rem;
+        width: 100%;
+        height: 5rem;
+        padding: 1.6rem 3rem;
+        font-family: var(--f-heading);
+        font-weight: 700;
+        font-size: 1.6rem;
+        color: var(--c-white);
+        background-color: #dd1969;
+        border: none;
+        justify-content: center;
+        border-radius: 0.4rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover,
+        &:focus {
+            background-color: #c01559;
+        }
+
+        &:active {
+            background-color: #a01249;
+        }
+    }
+    &__policy {
+        max-width: 22rem;
+        width: 100%;
+        font-family: var(--f-primary);
+        font-weight: 400;
+        font-size: 1.4rem;
+        line-height: 1.5;
+        color: #070216;
+    }
+
+    &__policy-link {
+        color: #dd1969;
+    }
+
+    &__form-input--error {
+        border-color: #d80032;
+        box-shadow: 0 0 0 1px rgba(216, 0, 50, 0.25);
+    }
+
+    &__error-text {
+        margin-top: 0.2rem;
+        font-size: 1.2rem;
+        color: #d80032;
+    }
+}

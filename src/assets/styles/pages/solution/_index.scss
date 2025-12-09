@@ -3,6 +3,8 @@
 @use "./solution_banner";
 @use "./solution_content";
 @use "./solution_products";
+@use "./solution_categories";
+@use "./solution_form";
 
 .l-solution {
     &__banner {

@@ -25,21 +25,6 @@ const renderLayout = (content) => {
     render(template, app);
 };
 
-// Slider rerender logic
-export const rerender = async () => {
-    const currentPath = window.location.pathname;
-
-    if (currentPath === "/solution") {
-        const pageContent = await loadAndRenderSolutionPage();
-        renderLayout(pageContent);
-    }
-
-    if (currentPath === "/") {
-        const pageContent = renderAssignmentPage();
-        renderLayout(pageContent);
-    }
-};
-
 /**
  * Route handlers
  */

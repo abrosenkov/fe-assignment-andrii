@@ -2,18 +2,18 @@
     position: fixed;
     right: 2.4rem;
     bottom: 2.4rem;
+    z-index: 999;
     padding: 1.4rem 2.4rem;
-    border-radius: 0.6rem;
-    color: #fff;
     font-size: 1.4rem;
     font-weight: 500;
+    color: #fff;
+    pointer-events: none;
+    border-radius: 0.6rem;
     opacity: 0;
-    transform: translateY(1rem);
     transition:
         opacity 0.3s ease,
         transform 0.3s ease;
-    z-index: 999;
-    pointer-events: none;
+    transform: translateY(1rem);
 
     &.is-visible {
         opacity: 1;
