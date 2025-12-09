@@ -5,6 +5,8 @@ import { initProductSlider } from "../ui/sliderController.js";
 import { productCard } from "../components/productCard.js";
 import { solutionCta } from "../components/solutionCta.js";
 import { solutionCategories } from "../components/solution-categories.js";
+import { modalForm } from "../components/modalForm.js";
+import { initModalForm } from "../ui/modalController.js";
 
 const MAX_QTY = 10;
 
@@ -13,10 +15,10 @@ const MAX_QTY = 10;
  */
 
 // CTA button click handler
-export const handleCtaClick = () => {
-    console.log("CTA button clicked");
-    // TODO: Implement email form/modal
-};
+// export const handleCtaClick = () => {
+//     console.log("CTA button clicked");
+// TODO: Implement email form/modal
+// };
 
 // Banner button click handler
 const handleBannerClick = () => {
@@ -26,7 +28,7 @@ const handleBannerClick = () => {
 
 // Compare button click handler
 export const handleCompare = (product) => {
-    console.log("🔍 COMPARE clicked:", {
+    console.log("COMPARE clicked:", {
         id: product.id,
         name: product.name,
         sku: product.sku,
@@ -208,13 +210,15 @@ export const renderSolutionPage = (data) => {
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="l-solution__categories">
-                    <div class="l-container-wide is-shorter">
-                        ${data.categories ? solutionCategories(data.categories) : html``}
-                    </div>
+            <div class="l-solution__categories">
+                <div class="l-container-wide is-shorter">
+                    ${data.categories ? solutionCategories(data.categories) : html``}
                 </div>
             </div>
+
+            ${modalForm()}
         </div>
     `;
 };
@@ -228,6 +232,7 @@ export const loadAndRenderSolutionPage = async () => {
         const tpl = renderSolutionPage(data);
         requestAnimationFrame(() => {
             initProductSlider();
+            initModalForm();
         });
 
         return tpl;

@@ -14,10 +14,25 @@
     }
 
     &__items {
-    display: grid;
-    grid-template-columns: 1fr 1.77fr;
-    grid-auto-rows: minmax(40.4rem, auto);
-    gap: 2rem;
+        display: flex;
+        gap: 1.9rem;
+        width: 100%;
+    }
+
+    &__left-side {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        flex: 1;
+        justify-content: space-between;
+    }
+
+    &__right-side {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        width: 34.5rem;
+        flex-shrink: 0;
     }
 
     &__item {
@@ -27,8 +42,6 @@
         border-radius: 0.8rem;
         display: flex;
         align-items: flex-end;
-        width: 100%;
-    height: 100%;
     }
 
     &__item-image {
@@ -116,101 +129,183 @@
         flex-direction: column;
         gap: 0.2rem;
         margin-bottom: 1.6rem;
+        &--two-columns {
+            display: block;
+            columns: 2;
+            column-gap: 2rem;
+        }
+    }
+
+    .c-category-card__item-list__item {
+        break-inside: avoid-column;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        gap: 1.2rem;
+    }
+
+    .c-category-card__item-list__item-link {
+        font-size: 1.6rem;
+        font-weight: 500;
+        line-height: 1.8;
+        color: var(--c-white);
+        text-decoration: none;
+        cursor: pointer;
+        transition: opacity 0.25s ease;
+        &:hover,
+        &:focus {
+            opacity: 0.7;
+        }
+    }
+
+    .c-solution-categories__all-categories {
+        display: flex;
+        flex-direction: row;
+        gap: 0.6rem;
+        font-weight: 700;
+        font-size: 1.5rem;
+        line-height: 1.2;
+        align-items: center;
+        font-family: var(--f-heading);
+        color: var(--c-white);
+        transition: opacity 0.25s ease;
+        &:hover,
+        &:focus {
+            opacity: 0.7;
+        }
+    }
+
+    .categories-item-icon {
+        width: 1.2rem;
+        height: 0.2rem;
+        fill: #dd1969;
+    }
+
+    .categories-icon {
+        width: 1.4rem;
+        height: 1.1rem;
+    }
+
+    .c-solution-categories__left-side .c-solution-categories__item:nth-child(1),
+    .c-solution-categories__left-side .c-solution-categories__item:nth-child(4) {
+        width: 33.8rem;
+        height: 40.4rem;
+    }
+
+    .c-solution-categories__left-side .c-solution-categories__item:nth-child(2),
+    .c-solution-categories__left-side .c-solution-categories__item:nth-child(3) {
+        width: 59.8rem;
+        height: 40.4rem;
+    }
+
+    .c-solution-categories__right-side .c-solution-categories__item {
+        width: 100%;
+        height: 82.8rem;
+    }
+
+    @media (min-device-pixel-ratio: 2), (resolution >= 192dpi) {
+        .c-solution-categories__item-image-elektricke-naradie {
+            background-image: url("/categories/elektricke-naradie@2x.webp");
+        }
+
+        .c-solution-categories__item-image-zahrada-a-les {
+            background-image: url("/categories/zahrada-a-les@2x.webp");
+        }
+
+        .c-solution-categories__item-cistenie-a-upratovanie {
+            background-image: url("/categories/cistenie-a-upratovanie@2x.webp");
+        }
+
+        .c-solution-categories__item-image-rucne-naradie {
+            background-image: url("/categories/rucne-naradie@2x.webp");
+        }
+
+        .c-solution-categories__item-image-prislusenstvo {
+            background-image: url("/categories/prislusenstvo@2x.webp");
+        }
+
+        .c-solution-categories__item-overlay-prislusenstvo {
+            background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, #000 100%);
+        }
     }
 }
 
-.c-category-card__item-list__item {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    gap: 1.2rem;
-}
+@media (max-width: 1359px) {
+    .c-solution-categories {
+        &__items {
+            align-items: flex-start;
+        }
 
-.c-category-card__item-list__item-link {
-    font-size: 1.6rem;
-    font-weight: 500;
-    line-height: 1.8;
-    color: var(--c-white);
-    text-decoration: none;
-    cursor: pointer;
-}
+        &__left-side {
+            width: auto;
+            flex: 1;
+        }
 
-.c-solution-categories__all-categories {
-    display: flex;
-    flex-direction: row;
-    gap: 0.6rem;
-    font-weight: 700;
-    font-size: 1.5rem;
-    line-height: 1.2;
-    align-items: center;
-    font-family: var(--f-heading);
-    color: var(--c-white);
-}
+        &__right-side {
+            width: 32rem;
+        }
 
-.categories-item-icon {
-    width: 1.2rem;
-    height: 0.2rem;
-    fill: #dd1969;
-}
+        &__left-side .c-solution-categories__item {
+            width: 100% !important;
+            height: 32rem !important;
+        }
 
-.categories-icon {
-    width: 1.4rem;
-    height: 1.1rem;
-}
-
-.c-solution-categories__item-elektricke-naradie {
-    grid-column: 1;
-    grid-row: 1;
-    height: 40.4rem;
-}
-
-.c-solution-categories__item-zahrada-a-les {
-    grid-column: 2;
-    grid-row: 1;
-    height: 40.4rem;
-}
-
-.c-solution-categories__item-prislusenstvo {
-    grid-column: 1;
-    grid-row: 2 / span 2;   // ✅ ВЫСОКАЯ ЗАНИМАЕТ 2 РЯДА
-    height: 82.8rem;
-}
-
-.c-solution-categories__item-cistenie-a-upratovanie {
-    grid-column: 2;
-    grid-row: 2;
-    height: 40.4rem;
-}
-
-.c-solution-categories__item-rucne-naradie {
-    grid-column: 2;
-    grid-row: 3;
-    height: 40.4rem;
-}
-
-@media (min-device-pixel-ratio: 2), (resolution >= 192dpi) {
-    .c-solution-categories__item-image-elektricke-naradie {
-        background-image: url("/categories/elektricke-naradie@2x.webp");
+        &__right-side .c-solution-categories__item {
+            height: 64rem;
+        }
     }
+}
 
-    .c-solution-categories__item-image-zahrada-a-les {
-        background-image: url("/categories/zahrada-a-les@2x.webp");
+@media (max-width: 1024px) {
+    .c-solution-categories {
+        &__items {
+            flex-direction: column;
+        }
+
+        &__left-side {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        &__right-side {
+            width: 100%;
+        }
+
+        &__left-side .c-solution-categories__item,
+        &__right-side .c-solution-categories__item {
+            width: 100%;
+            height: 30rem;
+        }
     }
+}
 
-    .c-solution-categories__item-cistenie-a-upratovanie {
-        background-image: url("/categories/cistenie-a-upratovanie@2x.webp");
-    }
+@media (max-width: 600px) {
+    .c-solution-categories {
+        &__title {
+            font-size: 2.6rem;
+            margin-bottom: 2.4rem;
+        }
 
-    .c-solution-categories__item-image-rucne-naradie {
-        background-image: url("/categories/rucne-naradie@2x.webp");
-    }
+        &__left-side,
+        &__right-side {
+            display: flex;
+            flex-direction: column;
+        }
 
-    .c-solution-categories__item-image-prislusenstvo {
-        background-image: url("/categories/prislusenstvo@2x.webp");
-    }
+        &__item {
+            height: auto;
+            min-height: 26rem;
+            padding: 2rem;
+        }
 
-    .c-solution-categories__item-overlay-prislusenstvo {
-        background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, #000 100%);
+        &__item-title {
+            font-size: 1.8rem;
+        }
+
+        &__item-list--two-columns {
+            column-count: 1;
+        }
     }
 }

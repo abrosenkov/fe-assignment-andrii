@@ -1,5 +1,4 @@
 import { html } from "lit-html";
-import { handleCtaClick } from "../pages/solution.js";
 
 export const solutionCta = (ctaBanner) => html`
     <div class="c-solution-cta">
@@ -16,7 +15,7 @@ export const solutionCta = (ctaBanner) => html`
                 type="button"
                 aria-label="Získať tajnú ponuku"
                 class="c-solution-cta__content__button"
-                @click=${() => handleCtaClick()}
+                data-open-modal="secret-offer"
             >
                 <span class="sc-text">${ctaBanner.ctaText}</span>
 

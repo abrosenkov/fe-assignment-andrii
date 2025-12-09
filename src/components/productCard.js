@@ -1,6 +1,6 @@
 import { html } from "lit-html";
 import { changeQty, handleAddToCart, handleCompare, handleFavorite } from "../pages/solution.js";
-import { renderStars } from "../ui/render-stars.js";
+import { renderStars } from "../ui/renderStars.js";
 
 export const productCard = (product, index) => html`
     <article class="c-product-card">
