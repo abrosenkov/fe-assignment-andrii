@@ -6,7 +6,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(46, 47, 66, 0.6);
+    background-color: rgba(0, 0, 0, 0.6);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -201,5 +201,57 @@
         margin-top: 0.2rem;
         font-size: 1.2rem;
         color: #d80032;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .c-solution-form {
+        &__modal {
+            width: 35rem;
+            padding: 5rem 2rem 2rem;
+            transform: translate(-50%, -50%);
+        }
+
+        &__title-content {
+            flex-direction: column;
+            margin-bottom: 2rem;
+        }
+
+        &__title {
+            width: 100%;
+            font-size: 2rem;
+        }
+
+        &__required-fields {
+            position: absolute;
+            top: 1.4rem;
+            left: 2rem;
+        }
+
+        &__input-wrapper,
+        &__input-wrapper--name-tel {
+            flex-direction: column;
+            margin-bottom: 1.6rem;
+        }
+
+        &__form-label {
+            font-size: 1.3rem;
+        }
+
+        &__form-input,
+        &__form-input--select {
+            height: 4rem;
+        }
+
+        &__button-wrapper {
+            flex-direction: column-reverse;
+        }
+
+        &__policy {
+            width: 100%;
+            font-size: 1.2rem;
+            max-width: 100%;
+            text-align: center;
+        }
     }
 }

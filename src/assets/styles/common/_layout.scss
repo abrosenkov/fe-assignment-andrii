@@ -55,3 +55,34 @@ body {
         padding: 0 var(--s-container-padding);
     }
 }
+
+@media screen and (max-width: 1366px) {
+    .l-container-wide {
+        max-width: 1366px;
+
+        &.is-shorter {
+            max-width: 1180px;
+        }
+    }
+}
+
+@media screen and (max-width: 1179px) {
+    .l-container-wide {
+        max-width: 1179px;
+
+        &.is-shorter {
+            max-width: 768px;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .l-container-wide {
+        max-width: 768px;
+
+        &.is-shorter {
+            max-width: 327px;
+            padding: 0;
+        }
+    }
+}

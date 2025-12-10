@@ -109,10 +109,50 @@
     }
 }
 
-// @media screen and (max-width: 375px) {
-//     .c-solution-banner {
-//         &__image {
-//             width: 100%;
-//         }
-//     }
-// }
+@media screen and (max-width: 1179px) {
+    .c-solution-banner {
+        border-radius: 0;
+
+        &__image {
+            border-radius: 0;
+        }
+
+        &__overlay {
+            border-radius: 0;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .c-solution-banner {
+        min-height: 0;
+        &__image {
+            background-size: cover;
+            background-image: image-set(
+                url("/banner/main-banner.webp") 1x,
+                url("/banner/main-banner@2x.webp") 2x
+            );
+        }
+
+        &__content {
+            padding: 14.8rem 2.4rem 2.4rem;
+
+            &__title {
+                width: 100%;
+                font-size: 3.2rem;
+                line-height: 1.25;
+            }
+
+            &__description {
+                font-size: 1.4rem;
+                width: 100%;
+            }
+
+            &__button {
+                .sb-text {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+    }
+}

@@ -1,6 +1,10 @@
 import { html } from "lit-html";
 
-export const solutionCategories = (categories) => {
+export const solutionCategories = (categories = []) => {
+    if (!categories.length) {
+        return html`<p>Kategórie momentálne nie sú dostupné.</p>`;
+    }
+
     const leftSide = categories.slice(0, 4);
     const rightSide = categories.slice(4);
 
@@ -11,8 +15,9 @@ export const solutionCategories = (categories) => {
             <div class="c-solution-categories__items">
                 <div class="c-solution-categories__left-side">
                     ${leftSide.map((category) => {
+                        const subcategories = category.subcategories ?? [];
                         const listClasses =
-                            category.subcategories.length > 3
+                            subcategories.length > 3
                                 ? "c-solution-categories__item-list c-solution-categories__item-list--two-columns"
                                 : "c-solution-categories__item-list";
                         return html`
@@ -68,6 +73,8 @@ export const solutionCategories = (categories) => {
                                         ><span class="c-solution-categories__all-categories-text"
                                             >${category.ctaText}</span
                                         ><svg
+                                            aria-hidden="true"
+                                            focusable="false"
                                             class="categories-icon"
                                             version="1.1"
                                             xmlns="http://www.w3.org/2000/svg"
@@ -141,6 +148,8 @@ export const solutionCategories = (categories) => {
                                         ><span class="c-solution-categories__all-categories-text"
                                             >${category.ctaText}</span
                                         ><svg
+                                            aria-hidden="true"
+                                            focusable="false"
                                             class="categories-icon"
                                             version="1.1"
                                             xmlns="http://www.w3.org/2000/svg"
