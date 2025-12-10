@@ -79,40 +79,88 @@ npm run eslint-dry-run
 ## Project Structure
 
 ```
-├── index.html                  # HTML entry point
-├── package.json                # Project dependencies and scripts
-├── vite.config.js              # Vite configuration
-├── tsconfig.json               # TypeScript configuration
-├── eslint.config.js            # ESLint configuration
-├── .prettierrc.js              # Prettier configuration
-├── .stylelintrc.js             # Stylelint configuration
-├── .prettierignore             # Files to ignore for Prettier
-├── .stylelintignore            # Files to ignore for Stylelint
-├── .gitignore                  # Git ignore rules
-├── .nvmrc                      # Node version specification
+├── index.html                # HTML entry point
+├── package.json              # Project dependencies and scripts
+├── package-lock.json         # Locked dependency tree
+├── vite.config.js            # Vite configuration
+├── tsconfig.json             # TypeScript configuration
+├── eslint.config.js          # ESLint configuration
+├── .prettierrc.js            # Prettier configuration
+├── .prettierignore           # Files ignored by Prettier
+├── .stylelintrc.js           # StyleLint configuration
+├── .stylelintignore          # Files ignored by StyleLint
+├── .gitignore                # Git ignore rules
+├── .nvmrc                    # Node version specification
+├── README.md                 # Project documentation
+│
 ├── src/
-│   ├── main.js                # Application entry point
-│   ├── router.js              # Simple vanilla JS router
-│   ├── config.js              # Application configuration (API URL, dev settings)
-│   ├── dataLoader.js          # Data loading with API integration and caching
+│   ├── main.js               # Application entry point
+│   ├── router.js             # Simple client-side router
+│   ├── config.js             # Global application configuration
+│   ├── dataLoader.js         # Data loading and API integration
+│
 │   ├── api/
-│   │   └── emailApi.js        # Email validation API client
+│   │   └── emailApi.js       # Email API client (form sending)
+│
 │   ├── assets/
-│   │   ├── images/
-│   │   │   ├── logo.svg       # RIESENIA logo
-│   │   │   └── gradient.jpg   # Header gradient background
-│   │   └── styles/
-│   │       ├── import.scss    # Main SCSS entry point
-│   │       ├── init/          # Variables, mixins
-│   │       ├── common/        # Reset, fonts, layout
-│   │       ├── layout/        # Header, footer, layout
-│   │       └── pages/         # Page-specific styles
+│   │   ├── fonts/            # Project fonts
+│   │   └── images/
+│   │       ├── logo.svg      # Project logo
+│   │       └── gradient.jpg # Gradient background image
+│
+│   ├── styles/
+│   │   ├── import.scss       # Main SCSS entry point
+│   │
+│   │   ├── init/             # Global SCSS setup
+│   │   │   ├── _index.scss   # SCSS init entry
+│   │   │   ├── _mixins.scss  # Global mixins
+│   │   │   └── _variables.scss # CSS & SCSS variables
+│   │
+│   │   ├── common/           # Global common styles
+│   │   │   ├── _reset.scss   # CSS reset
+│   │   │   ├── _fonts.scss   # Font declarations
+│   │   │   ├── _layout.scss  # Base layout styles
+│   │   │   ├── _slider.scss  # Slider styles
+│   │   │   ├── _toast.scss   # Toast notification styles
+│   │   │   └── _index.scss   # Common styles entry
+│   │
+│   │   ├── layout/           # Layout components styles
+│   │   │   ├── _header.scss  # Header styles
+│   │   │   ├── _footer.scss  # Footer styles
+│   │   │   ├── _layout.scss  # Main layout wrapper
+│   │   │   └── _index.scss   # Layout entry
+│   │
+│   │   └── pages/            # Page-specific styles
+│   │       ├── assignment/
+│   │       │   └── _index.scss   # Assignment page styles
+│   │       │
+│   │       └── solution/
+│   │           ├── _index.scss                # Solution page entry styles
+│   │           ├── _solution_banner.scss      # Banner section styles
+│   │           ├── _solution_categories.scss  # Categories section styles
+│   │           ├── _solution_content.scss     # Main content styles
+│   │           ├── _solution_cta.scss         # CTA section styles
+│   │           ├── _solution_form.scss        # Form styles
+│   │           └── _solution_products.scss   # Product cards styles
+│
 │   ├── components/
 │   │   ├── header.js          # Header component
-│   │   └── footer.js          # Footer component
-│   └── pages/
-│       ├── assignment.js      # Assignment description page
-│       └── solution.js        # Solution implementation page
+│   │   ├── footer.js          # Footer component
+│   │   ├── modalForm.js       # Modal form component
+│   │   ├── productCard.js    # Product card component
+│   │   ├── solutionCategories.js # Solution categories component
+│   │   └── solutionCta.js    # CTA component
+│
+│   ├── pages/
+│   │   ├── assignment.js     # Assignment page logic
+│   │   └── solution.js       # Solution page logic
+│
+│   └── ui/
+│       ├── modalController.js # Modal window controller
+│       ├── renderStars.js     # Star rating rendering logic
+│       ├── sliderController.js # Slider logic controller
+│       └── toast.js           # Toast notification system
+│
 └── public/
     └── favicon.ico            # Browser favicon
 ```

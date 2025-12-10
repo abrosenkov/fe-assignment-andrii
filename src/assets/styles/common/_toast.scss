@@ -10,6 +10,7 @@
     pointer-events: none;
     border-radius: 0.6rem;
     opacity: 0;
+    z-index: 100000000;
     transition:
         opacity 0.3s ease,
         transform 0.3s ease;
@@ -26,5 +27,11 @@
 
     &.is-error {
         background: #dd1969;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .c-toast {
+        max-width: 32.7rem;
     }
 }

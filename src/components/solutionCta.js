@@ -12,6 +12,7 @@ export const solutionCta = (ctaBanner) => html`
             <div class="c-solution-cta__content__description">${ctaBanner.description}</div>
 
             <button
+                data-modal-open
                 type="button"
                 aria-label="Získať tajnú ponuku"
                 class="c-solution-cta__content__button"

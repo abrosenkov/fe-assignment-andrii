@@ -6,7 +6,7 @@ import { productCard } from "../components/productCard.js";
 import { solutionCta } from "../components/solutionCta.js";
 import { solutionCategories } from "../components/solution-categories.js";
 import { modalForm } from "../components/modalForm.js";
-import { initModalForm } from "../ui/modalController.js";
+import { initModalForm, openModal } from "../ui/modalController.js";
 
 const MAX_QTY = 10;
 
@@ -15,34 +15,31 @@ const MAX_QTY = 10;
  */
 
 // CTA button click handler
-// export const handleCtaClick = () => {
-//     console.log("CTA button clicked");
-// TODO: Implement email form/modal
-// };
+export const handleCtaClick = () => {
+    openModal();
+    console.log("CTA button clicked");
+};
 
 // Banner button click handler
 const handleBannerClick = () => {
     console.log("Banner button clicked");
-    // TODO: Navigate to products or filter
 };
 
 // Compare button click handler
 export const handleCompare = (product) => {
-    console.log("COMPARE clicked:", {
+    console.log("compare clicked:", {
         id: product.id,
         name: product.name,
         sku: product.sku,
     });
-    // TODO: Implement compare logic
 };
 
 // Favorite button click handler
 export const handleFavorite = (product) => {
-    console.log("FAVORITE clicked:", {
+    console.log("favorite clicked:", {
         id: product.id,
         name: product.name,
     });
-    // TODO: Implement favorite logic
 };
 
 // Quantity change button click handler
@@ -66,6 +63,12 @@ export const changeQty = (productId, delta) => {
 // Add to cart button click handler
 export const handleAddToCart = (product) => {
     const input = document.querySelector(`#qty-${product.id}`);
+
+    if (!input) {
+        showToast("Chyba množstva produktu", "error");
+        return;
+    }
+
     const qty = Number(input?.value);
 
     if (qty > MAX_QTY) {
@@ -82,6 +85,7 @@ export const handleAddToCart = (product) => {
 
     console.log(`Pridané do košíka: ${product.name} | Množstvo: ${qty}`);
     showToast(`${product.name} (${qty} ks) pridané do košíka`, "success");
+    input.value = 1;
 };
 
 // Solution main banner
@@ -91,7 +95,7 @@ const solutionBanner = (banner) => html`
         <div class="c-solution-banner__overlay"></div>
         <div class="c-solution-banner__content">
             <h1 class="c-solution-banner__content__title">${banner?.title ?? ""}</h1>
-            <div class="c-solution-banner__content__description">${banner?.description ?? ""}</div>
+            <p class="c-solution-banner__content__description">${banner?.description ?? ""}</p>
             <button
                 type="button"
                 aria-label="Zobraziť celú ponuku"
@@ -149,7 +153,9 @@ const productsSection = (products) =>
 
         <div class="c-products-slider__viewport">
             <div class="c-products-slider__track">
-                ${products.map((product, index) => productCard(product, index))}
+                ${Array.isArray(products)
+                    ? products.map((product, index) => productCard(product, index))
+                    : html`<p>Žiadne produkty</p>`}
             </div>
         </div>
 
@@ -187,8 +193,6 @@ export const renderSolutionPage = (data) => {
     console.log("data.products:\n", data.products);
     console.log("data.categories:\n", data.categories);
 
-    const productsFour = [...data.products, ...data.products];
-
     return html`
         <div class="l-solution">
             <div class="l-solution__banner">
@@ -205,7 +209,7 @@ export const renderSolutionPage = (data) => {
                         </div>
 
                         <div class="c-solution-content__products">
-                            ${productsSection(productsFour)}
+                            ${productsSection(data.products)}
                             <button class="c-products-load-more">Zobraziť všetko</button>
                         </div>
                     </div>

@@ -1,10 +1,13 @@
-import { validateEmail } from "../api/emailApi.js"; //
+import { validateEmail } from "../api/emailApi.js";
 import { showToast } from "./toast.js";
 
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email format validation
+// Basic email format validation
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const phoneRegex = /^\+421 ?\d{3} ?\d{3} ?\d{3}$/; // Slovak phone number format
+// Slovak phone number format
+const phoneRegex = /^\+421 ?\d{3} ?\d{3} ?\d{3}$/;
 
+// Add error message to a field
 const addError = (field, message) => {
     if (!field) return;
 
@@ -28,12 +31,15 @@ const clearErrors = (form) => {
     form.querySelectorAll(".c-solution-form__error-text").forEach((el) => el.remove());
 };
 
-const openModal = () => {
+export const openModal = () => {
     const modal = document.getElementById("modalForm");
     if (!modal) return;
+
     modal.classList.add("is-open");
     modal.removeAttribute("aria-hidden");
-    document.body.style.overflow = "hidden";
+
+    //if needed, prevent background scrolling
+    // document.body.style.overflow = "hidden";
 
     const firstInput = modal.querySelector("input, select, button");
     firstInput?.focus();
@@ -44,7 +50,9 @@ const closeModal = () => {
     if (!modal) return;
     modal.classList.remove("is-open");
     modal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+
+    //if needed, restore background scrolling
+    // document.body.style.overflow = "";
 };
 
 export const initModalForm = () => {
@@ -55,7 +63,7 @@ export const initModalForm = () => {
     const closeBtn = modal.querySelector("#modal-close");
 
     // Buttons to open modal
-    const openButtons = document.querySelectorAll('[data-open-modal="secret-offer"]');
+    const openButtons = document.querySelectorAll("[data-modal-open]");
 
     openButtons.forEach((btn) =>
         btn.addEventListener("click", (e) => {

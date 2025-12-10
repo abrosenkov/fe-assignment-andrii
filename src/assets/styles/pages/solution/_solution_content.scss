@@ -21,3 +21,68 @@
         width: 65.6rem;
     }
 }
+
+@media screen and (max-width: 1360px) {
+    .c-solution-content {
+        display: flex;
+        gap: 2.4rem;
+        justify-content: space-between;
+        align-items: stretch;
+
+        &__cta {
+            width: calc(100% - 65.6rem - 2.4rem);
+            height: auto;
+            min-width: 0;
+            flex: 1;
+        }
+
+        &__products {
+            display: flex;
+            flex-direction: row;
+            gap: 2.4rem;
+            align-items: stretch;
+            width: 65.6rem;
+            flex-shrink: 0;
+        }
+    }
+}
+
+@media screen and (max-width: 1179px) {
+    .c-solution-content {
+        flex-direction: column;
+        margin-bottom: 5rem;
+
+        &__cta {
+            width: 100%;
+        }
+
+        &__products {
+            width: 65.6rem;
+            margin: 0 auto;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .c-solution-content {
+        &__cta {
+            width: 100%;
+        }
+
+        &__products {
+            width: 100%;
+            margin: 0 auto;
+            flex-direction: column;
+        }
+    }
+
+    .c-products-load-more {
+        margin: 2rem auto;
+        height: 4.5rem;
+        text-align: center;
+        padding: 0 2.4rem;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--c-white);
+    }
+}

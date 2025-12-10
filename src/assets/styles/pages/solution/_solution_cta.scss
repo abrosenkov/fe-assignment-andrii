@@ -4,7 +4,7 @@
     position: relative;
     width: 64rem;
     height: 100%;
-    min-height: 54rem;
+    min-height: 0;
     overflow: hidden;
     border-radius: 0.8rem;
 
@@ -26,6 +26,7 @@
     }
 
     &__content {
+        display: flex;
         position: relative;
         flex-direction: column;
         align-items: flex-start;
@@ -98,6 +99,39 @@
     .c-solution-cta {
         &__image {
             background-image: url("/cta/cta-banner@2x.webp");
+        }
+    }
+}
+
+@media screen and (max-width: 1366px) {
+    .c-solution-cta {
+        display: flex;
+        width: 100%;
+        flex: 1;
+
+        &__content {
+            padding: 10rem 5rem;
+        }
+    }
+}
+@media screen and (max-width: 1179px) {
+}
+
+@media screen and (max-width: 768px) {
+    .c-solution-cta {
+        &__content {
+            padding: 14rem 2.4rem 2.4rem;
+
+            &__title {
+                font-size: 2.7rem;
+                width: 100%;
+                margin-bottom: 2rem;
+            }
+
+            &__description {
+                font-size: 1.4rem;
+                width: 100%;
+            }
         }
     }
 }

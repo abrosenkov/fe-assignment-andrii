@@ -28,7 +28,7 @@ export const modalForm = () =>
                 <h2 class="c-solution-form__title">Tajná ponuka produktov Dewalt len pre vás</h2>
                 <p class="c-solution-form__required-fields">* povinné polia</p>
             </div>
-            <form class="c-solution-form__form">
+            <form class="c-solution-form__form" novalidate>
                 <div class="c-solution-form__input-wrapper">
                     <label for="modal-user-email" class="c-solution-form__form-label"
                         >E-mail <span>*</span></label
@@ -71,7 +71,7 @@ export const modalForm = () =>
                 </div>
                 <div class="c-solution-form__input-wrapper">
                     <label for="modal-user-select" class="c-solution-form__form-label"
-                        >Meno a priezvisko <span>*</span></label
+                        >Odkiaľ ste sa o tejto ponuke dozvedeli? <span>*</span></label
                     >
                     <select
                         class="c-solution-form__form-input--select"
@@ -116,9 +116,8 @@ export const modalForm = () =>
                         <a
                             class="c-solution-form__policy-link"
                             target="_blank"
+                            rel="noopener noreferrer"
                             href="#"
-                            noopener
-                            noreferrer
                             >spracovaním osobných údajov</a
                         >
                     </p>
