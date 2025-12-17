@@ -8,6 +8,30 @@ import { solutionCategories } from "../components/solution-categories.js";
 import { modalForm } from "../components/modalForm.js";
 import { initModalForm, openModal } from "../ui/modalController.js";
 
+import Swiper from "swiper";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+export const initBannerSwiper = () => {
+    const swiper = new Swiper(".swiper", {
+        modules: [Navigation, Pagination, Autoplay],
+        direction: "horizontal",
+        loop: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        pagination: { el: ".swiper-pagination" },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+    return swiper;
+};
+
 const MAX_QTY = 10;
 
 /**
@@ -91,7 +115,13 @@ export const handleAddToCart = (product) => {
 // Solution main banner
 const solutionBanner = (banner) => html`
     <div class="c-solution-banner">
-        <div class="c-solution-banner__image"></div>
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide c-solution-banner__image"></div>
+                <div class="swiper-slide c-solution-banner__image"></div>
+            </div>
+        </div>
         <div class="c-solution-banner__overlay"></div>
         <div class="c-solution-banner__content">
             <h1 class="c-solution-banner__content__title">${banner?.title ?? ""}</h1>
@@ -123,6 +153,8 @@ const solutionBanner = (banner) => html`
                 </svg>
             </button>
         </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
     </div>
 `;
 
@@ -237,6 +269,7 @@ export const loadAndRenderSolutionPage = async () => {
         requestAnimationFrame(() => {
             initProductSlider();
             initModalForm();
+            initBannerSwiper();
         });
 
         return tpl;

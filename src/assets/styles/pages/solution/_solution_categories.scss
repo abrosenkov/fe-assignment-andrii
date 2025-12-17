@@ -221,6 +221,12 @@
 }
 
 @media screen and (min-width: 1367px) {
+    .c-solution-categories__left-side
+        .c-solution-categories__item:nth-child(1)
+        .c-category-card__item-list__item:not(:nth-child(-n + 3)) {
+        display: none;
+    }
+
     .c-solution-categories__left-side .c-solution-categories__item:nth-child(1),
     .c-solution-categories__left-side .c-solution-categories__item:nth-child(4) {
         width: 33.8rem;

@@ -39,7 +39,7 @@ export const openModal = () => {
     modal.removeAttribute("aria-hidden");
 
     //if needed, prevent background scrolling
-    // document.body.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
 
     const firstInput = modal.querySelector("input, select, button");
     firstInput?.focus();
@@ -52,7 +52,7 @@ const closeModal = () => {
     modal.setAttribute("aria-hidden", "true");
 
     //if needed, restore background scrolling
-    // document.body.style.overflow = "";
+    document.body.style.overflow = "";
 };
 
 export const initModalForm = () => {

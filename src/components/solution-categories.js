@@ -42,7 +42,7 @@ export const solutionCategories = (categories = []) => {
                                         </span>
                                     </div>
                                     <ul class="${listClasses}">
-                                        ${category.subcategories.map(
+                                        ${category.subcategories.slice(0, 6).map(
                                             (item) =>
                                                 html`<li class="c-category-card__item-list__item">
                                                     <svg
